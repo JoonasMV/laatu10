@@ -2,12 +2,10 @@
 package kivipaperisakset;
 
 /**
+ * Pelaaja luokka, joka sisältää pelaajan tiedot
  * @author Ira Dook
  */
 @SuppressWarnings("SpellCheckingInspection")
-/**
- * Pelaaja luokka, joka sisältää pelaajan tiedot
- */
 public class Pelaaja {
 
     private int voitot;

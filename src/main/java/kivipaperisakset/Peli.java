@@ -1,12 +1,10 @@
 package kivipaperisakset;
 
 /**
+ * Peli luokka, joka sisältää pelin logiikan
  * @author Ira Dook
  */
 @SuppressWarnings("SpellCheckingInspection")
-/**
- * Peli luokka, joka sisältää pelin logiikan
- */
 public class Peli {
     private final Pelaaja p1;
     private final Pelaaja p2;
