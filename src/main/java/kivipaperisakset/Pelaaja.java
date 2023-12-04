@@ -5,6 +5,9 @@ package kivipaperisakset;
  * @author Ira Dook
  */
 @SuppressWarnings("SpellCheckingInspection")
+/**
+ * Pelin pelaaja
+ */
 public class Pelaaja {
 
     private int voitot;      // Voittojen lukumäärä
@@ -15,9 +18,9 @@ public class Pelaaja {
     }
 
     /**
-     * Valitse randomilla kivi, paperi tai sakset
+     * Arpoo pelaajalle pelimerkin
      */
-    public void arvoKiviPaperiSakset() {
+    public void arvoMerkki() {
         String arvottuValinta = "";
         int c = (int) (Math.random() * 3);
         switch (c) {
@@ -28,19 +31,33 @@ public class Pelaaja {
         this.valinta = arvottuValinta;
     }
 
+    /**
+     * Lisaa voiton pelaajalle
+     */
     public void lisaaVoitto() {
         voitot++;
     }
 
+    /**
+     * Palauttaa pelaajan voittojen yhteismäärän
+     * @return Pelaajan yhteismäärä voittoja
+     */
     public int getVoitot() {
         return voitot;
     }
 
+    /**
+     * Palauttaa peelajan merkin, joka tällä on kyseisellä hetkellä
+     * @return Pelaajan valinta
+     */
     public String getValinta() {
         return valinta;
     }
 
-    // Testausta varten
+    /**
+     * Asettaa pelaajalle merkin
+     * @param valinta Merkki joka pelaajalle halutaan asettaa
+     */
     public void setValinta(String valinta) {
         this.valinta = valinta;
     }

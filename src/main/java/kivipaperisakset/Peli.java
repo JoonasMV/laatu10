@@ -4,29 +4,30 @@ package kivipaperisakset;
  * @author Ira Dook
  */
 @SuppressWarnings("SpellCheckingInspection")
+/**
+ * Kivi, paperi, sakset pelin luokka, jossa peli pelataan.
+ */
 public class Peli {
+    private final Pelaaja p1;
+    private final Pelaaja p2;
+    private boolean peliLoppui = false;
+    private int pelatutPelit = 0;
+    private int tasapelit = 0;
 
-    public static void main(String args[]) {
-        Pelaaja p1 = new Pelaaja();
-        Pelaaja p2 = new Pelaaja();
-        boolean peliLoppui = false;
-        int pelatutPelit = 0;           // Pelattujen pelien lkm
-        int tasapelit = 0;              // Tasapelien lkm
+    public Peli() {
+        p1 = new Pelaaja();
+        p2 = new Pelaaja();
+    }
 
+    public void aloita() {
         do {
-            System.out.printf("Erä: %d =====================\n", pelatutPelit);
+            System.out.printf("Erä: %d =====================\n", pelatutPelit + 1);
             System.out.printf("Tasapelien lukumäärä: %d\n", tasapelit);
 
+            p1.arvoMerkki();
+            p2.arvoMerkki();
 
-            p1.arvoKiviPaperiSakset();
-            p2.arvoKiviPaperiSakset();
-
-            if (p1.getValinta().equals(p2.getValinta())) {
-                tasapelit++;
-                System.out.println("\n\t\t\t Tasapeli \n");
-            } else {
-                tarkistaVoittaja(p1, p2);
-            }
+            tarkistaVoittaja();
             pelatutPelit++;
 
             System.out.printf("Pelaaja 1: %s%n\t Pelaaja 1:llä koossa %d voittoa.%n", p1.getValinta(), p1.getVoitot());
@@ -41,9 +42,16 @@ public class Peli {
         } while (!peliLoppui);
     }
 
-    static void tarkistaVoittaja(Pelaaja p1, Pelaaja p2) {
+
+    void tarkistaVoittaja() {
         String p1Valinta = p1.getValinta();
         String p2Valinta = p2.getValinta();
+
+        if (p1.getValinta().equals(p2.getValinta())) {
+            tasapelit++;
+            System.out.println("\n\t\t\t Tasapeli \n");
+            return;
+        }
 
         if (p1Valinta.equals("kivi") && p2Valinta.equals("sakset")
                 || p1Valinta.equals("paperi") && p2Valinta.equals("kivi")
@@ -52,5 +60,17 @@ public class Peli {
         } else {
             p2.lisaaVoitto();
         }
+    }
+
+    public Pelaaja getP1() {
+        return p1;
+    }
+
+    public Pelaaja getP2() {
+        return p2;
+    }
+
+    public int getTasapelit() {
+        return tasapelit;
     }
 }
