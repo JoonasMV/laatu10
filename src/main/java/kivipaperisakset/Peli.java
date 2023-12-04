@@ -5,7 +5,7 @@ package kivipaperisakset;
  */
 @SuppressWarnings("SpellCheckingInspection")
 /**
- * Kivi, paperi, sakset pelin luokka, jossa peli pelataan.
+ * Peli luokka, joka sisältää pelin logiikan
  */
 public class Peli {
     private final Pelaaja p1;
@@ -19,6 +19,9 @@ public class Peli {
         p2 = new Pelaaja();
     }
 
+    /**
+     * Aloittaa pelin
+     */
     public void aloita() {
         do {
             System.out.printf("Erä: %d =====================\n", pelatutPelit + 1);
@@ -42,7 +45,9 @@ public class Peli {
         } while (!peliLoppui);
     }
 
-
+    /**
+     * Tarkistaa kumpi pelaajista voitti vai tulliko tasapeli
+     */
     void tarkistaVoittaja() {
         String p1Valinta = p1.getValinta();
         String p2Valinta = p2.getValinta();

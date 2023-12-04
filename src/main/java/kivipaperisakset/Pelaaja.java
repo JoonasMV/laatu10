@@ -6,11 +6,11 @@ package kivipaperisakset;
  */
 @SuppressWarnings("SpellCheckingInspection")
 /**
- * Pelin pelaaja
+ * Pelaaja luokka, joka sisältää pelaajan tiedot
  */
 public class Pelaaja {
 
-    private int voitot;      // Voittojen lukumäärä
+    private int voitot;
     private String valinta;
 
     public Pelaaja() {
