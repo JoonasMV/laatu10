@@ -2,40 +2,46 @@
 package kivipaperisakset;
 
 /**
- *
  * @author Ira Dook
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Pelaaja {
 
-    int voitot;      // Voittojen lukumäärä
-    int voitotYhteensä;
+    private int voitot;      // Voittojen lukumäärä
+    private String valinta;
+
+    public Pelaaja() {
+        this.voitot = 0;
+    }
 
     /**
      * Valitse randomilla kivi, paperi tai sakset
      */
-    public String pelaajanValinta() {
-        String valinta = "";
+    public void arvoKiviPaperiSakset() {
+        String arvottuValinta = "";
         int c = (int) (Math.random() * 3);
         switch (c) {
-            case 0:
-                valinta = ("kivi");
-                break;
-            case 1:
-                valinta = ("paperi");
-                break;
-            case 2:
-                valinta = ("sakset");
-                break;
+            case 0 -> arvottuValinta = ("kivi");
+            case 1 -> arvottuValinta = ("paperi");
+            case 2 -> arvottuValinta = ("sakset");
         }
-        return valinta;
+        this.valinta = arvottuValinta;
     }
 
-    public int setVoitot() {
-        int voitotYhteensä = voitot++;
-        return voitotYhteensä;
+    public void lisaaVoitto() {
+        voitot++;
     }
 
     public int getVoitot() {
-        return (voitot);
+        return voitot;
+    }
+
+    public String getValinta() {
+        return valinta;
+    }
+
+    // Testausta varten
+    public void setValinta(String valinta) {
+        this.valinta = valinta;
     }
 }

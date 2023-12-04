@@ -1,9 +1,9 @@
 package kivipaperisakset;
 
 /**
- *
  * @author Ira Dook
  */
+@SuppressWarnings("SpellCheckingInspection")
 public class Peli {
 
     public static void main(String args[]) {
@@ -11,57 +11,46 @@ public class Peli {
         Pelaaja p2 = new Pelaaja();
         boolean peliLoppui = false;
         int pelatutPelit = 0;           // Pelattujen pelien lkm
-        int p1Voitot = p1.voitot;       // Pelaaja 1:n voittojen lkm
-        int p2Voitot = p2.voitot;       // Pelaaja 2:n voittojen lkm
         int tasapelit = 0;              // Tasapelien lkm
-        String p1Valinta;
-        String p2Valinta;
-       
+
         do {
-            System.out.println("Erä: "
-                    + pelatutPelit + " =====================\n");
-            System.out.println("Tasapelien lukumäärä: "
-                    + tasapelit + "\n");
-            p1Valinta = p1.pelaajanValinta();
-            System.out.println("Pelaaja 1: " + p1Valinta
-                    + "\n\t Pelaaja 1:llä koossa " + p1Voitot + " voittoa.");
-            p2Valinta = p2.pelaajanValinta();
-            System.out.println("Pelaaja 2: " + p2Valinta
-                    + "\n\t Pelaaja 2:lla koossa " + p2Voitot + " voittoa.");
-            
-            // Allaolevassa pätkässä on yritetty eri tapoja saada
-            // lukumäärän laskeminen toimimaan oikein.
-            // Ei tää kyllä vieläkään skulaa - KORJAA!
-            
-            if ((p1Valinta.equals("kivi")) && (p2Valinta.equals("paperi"))) {
-                System.out.println("Pelaaja 2 voittaa");
-                p2Voitot++;  // Kokeile eri tapoja saada lukumäärän laskenta kuntoon
-            } else if ((p1Valinta.equals("paperi")) && (p2Valinta.equals("kivi"))) {
-                p1Voitot++;
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("kivi")) && (p2Valinta.equals("sakset"))) {
-                p1Voitot = p1.setVoitot();
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("sakset")) && (p2Valinta.equals("kivi"))) {
-                p2Voitot = p2.setVoitot();
-                System.out.println("Pelaaja 2 voittaa");
-            } else if ((p1Valinta.equals("sakset")) && (p2Valinta.equals("paperi"))) {
-                p1Voitot = p1.setVoitot();
-                System.out.println("Pelaaja 1 voittaa");
-            } else if ((p1Valinta.equals("paperi")) && (p2Valinta.equals("sakset"))) {
-                p2Voitot = p2.setVoitot();
-                System.out.println("Pelaaja 2 voittaa");
-            }
-            if (p1Valinta == p2Valinta) {
+            System.out.printf("Erä: %d =====================\n", pelatutPelit);
+            System.out.printf("Tasapelien lukumäärä: %d\n", tasapelit);
+
+
+            p1.arvoKiviPaperiSakset();
+            p2.arvoKiviPaperiSakset();
+
+            if (p1.getValinta().equals(p2.getValinta())) {
                 tasapelit++;
                 System.out.println("\n\t\t\t Tasapeli \n");
+            } else {
+                tarkistaVoittaja(p1, p2);
             }
             pelatutPelit++;
+
+            System.out.printf("Pelaaja 1: %s%n\t Pelaaja 1:llä koossa %d voittoa.%n", p1.getValinta(), p1.getVoitot());
+            System.out.printf("Pelaaja 2: %s%n\t Pelaaja 2:lla koossa %d voittoa.%n", p2.getValinta(), p2.getVoitot());
+
+
             if ((p1.getVoitot() >= 3) || (p2.getVoitot() >= 3)) {
                 peliLoppui = true;
                 System.out.println("KOLME VOITTOA - PELI PÄÄTTYY");
             }
             System.out.println();
-        } while (peliLoppui != true);
+        } while (!peliLoppui);
+    }
+
+    static void tarkistaVoittaja(Pelaaja p1, Pelaaja p2) {
+        String p1Valinta = p1.getValinta();
+        String p2Valinta = p2.getValinta();
+
+        if (p1Valinta.equals("kivi") && p2Valinta.equals("sakset")
+                || p1Valinta.equals("paperi") && p2Valinta.equals("kivi")
+                || p1Valinta.equals("sakset") && p2Valinta.equals("paperi")) {
+            p1.lisaaVoitto();
+        } else {
+            p2.lisaaVoitto();
+        }
     }
 }
